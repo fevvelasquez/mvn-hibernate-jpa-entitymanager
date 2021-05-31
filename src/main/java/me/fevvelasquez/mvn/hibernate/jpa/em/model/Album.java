@@ -115,7 +115,7 @@ public class Album {
 	 * This process adds overhead in terms of time and resources. If startup
 	 * performance is important, consider explicitly defining the type to use.
 	 */
-	@Temporal(TemporalType.TIME)
+	@Temporal(TemporalType.DATE)
 	@Column(name = "release_date", nullable = false)
 	public Date getReleaseDate() {
 		return releaseDate;
@@ -123,6 +123,11 @@ public class Album {
 
 	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
+	}
+
+	@Override
+	public String toString() {
+		return "Album [id=" + id + ", title=" + title + ", releaseDate=" + releaseDate + "]";
 	}
 
 }
