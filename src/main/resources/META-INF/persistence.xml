@@ -1,0 +1,31 @@
+<!-- ~ Hibernate, Relational Persistence for Idiomatic Java ~ ~ License: 
+	GNU Lesser General Public License (LGPL), version 2.1 or later. ~ See the 
+	lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>. -->
+
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+
+	<!-- persistence.xml files should provide a unique name for each "persistence 
+		unit". Applications use this name to reference the configuration when obtaining 
+		an javax.persistence.EntityManagerFactory reference -->
+
+	<persistence-unit
+		name="me.fevvelasquez.mvn.hibernate.jpa.em.persistenceunit">
+		<description>Persistence unit for the Java Persistence API (JPA) EntityManager exercises</description>
+		<properties>
+			<property name="javax.persistence.jdbc.driver"
+				value="org.h2.Driver" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:h2:~/h2db" /> 	<!-- on disk: "jdbc:h2:~/h2db" -->
+			<property name="javax.persistence.jdbc.user" value="sa" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.H2Dialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<!-- validate | update | create | create-drop -->
+			<property name="hibernate.hbm2ddl.auto" value="create" />
+		</properties>
+	</persistence-unit>
+</persistence>
