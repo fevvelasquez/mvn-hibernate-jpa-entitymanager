@@ -1,11 +1,12 @@
 /**
- * Entity Annotation Mappings.
+ * Persist, Merge, Remove and 'java.time' instead 'Date'.
  * 
- * Using annotations to provide Entity mapping information.
+ * Trying basic EntityManager operations and 
+ * using 'java.time.LocalDate' instead 'java.util.Date'.
  */
 package me.fevvelasquez.mvn.hibernate.jpa.em.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,8 +14,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -31,7 +30,7 @@ import org.hibernate.annotations.GenericGenerator;
  * visibility is required for runtime proxy generation and efficient data
  * retrieval without bytecode instrumentation.
  * 
- * @version 0.0.2-SNAPSHOT Entity Annotation Mappings.
+ * @version 0.0.5-SNAPSHOT Persist, Merge, Remove and 'java.time'.
  * @author fevvelasquez@gmail.com
  *
  */
@@ -49,7 +48,7 @@ public class Album {
 
 	private Long id;
 	private String title;
-	private Date releaseDate;
+	private LocalDate releaseDate;
 
 	/**
 	 * For Hibernate use.
@@ -57,7 +56,7 @@ public class Album {
 	public Album() {
 	}
 
-	public Album(String title, Date releaseDate) {
+	public Album(String title, LocalDate releaseDate) {
 		this.title = title;
 		this.releaseDate = releaseDate;
 	}
@@ -115,13 +114,16 @@ public class Album {
 	 * This process adds overhead in terms of time and resources. If startup
 	 * performance is important, consider explicitly defining the type to use.
 	 */
-	@Temporal(TemporalType.DATE)
+	// @Temporal(TemporalType.DATE)
+	// Not needed with LocalDate instead of Date.
+	// Early versions of hibernate require hibernate-java8 dependecy to manage
+	// java.time
 	@Column(name = "release_date", nullable = false)
-	public Date getReleaseDate() {
+	public LocalDate getReleaseDate() {
 		return releaseDate;
 	}
 
-	public void setReleaseDate(Date releaseDate) {
+	public void setReleaseDate(LocalDate releaseDate) {
 		this.releaseDate = releaseDate;
 	}
 
